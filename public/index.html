@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>91 Club Realtime - AI Predictor</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+
+<body>
+    <div class="app">
+        <!-- Connection Status -->
+        <div class="conn-status" id="connStatus">
+            🔴 Connecting to server...
+        </div>
+
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">
+                <span class="logo-icon">🎲</span>
+                <span class="logo-text">91<span class="highlight">CLUB</span></span>
+            </div>
+            <div class="balance-card">
+                <span class="balance-label">Balance</span>
+                <span class="balance-value">₹ 12,450</span>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <button class="deposit-btn">💸 Deposit</button>
+            <button class="withdraw-btn">💳 Withdraw</button>
+        </div>
+
+        <!-- AI Detail Badge -->
+        <div class="ai-badge">
+            <span class="ai-icon">🤖</span>
+            <span>AI Prediction Engine • Real-time WebSocket</span>
+        </div>
+
+        <!-- Game Mode Selector -->
+        <div class="game-modes">
+            <button class="mode-btn active" data-mode="30">WinGo 30sec</button>
+            <button class="mode-btn" data-mode="60">WinGo 1 Min</button>
+            <button class="mode-btn" data-mode="180">WinGo 3 Min</button>
+            <button class="mode-btn" data-mode="300">WinGo 5 Min</button>
+        </div>
+
+        <!-- Game Info -->
+        <div class="game-info">
+            <div class="period-box">
+                <span class="period-label">Period</span>
+                <span class="period-value" id="period">Loading...</span>
+            </div>
+            <div class="timer-box">
+                <span class="timer-label">Time remaining</span>
+                <div class="timer" id="timer">00:00</div>
+            </div>
+        </div>
+
+        <!-- Last Result Display -->
+        <div class="last-result">
+            <div class="result-card" id="lastResult">
+                <div class="result-number">—</div>
+                <div class="result-color">Waiting...</div>
+            </div>
+        </div>
+
+        <!-- Prediction Card -->
+        <div class="prediction-card">
+            <div class="prediction-header">
+                <span class="prediction-title">🎯 AI REAL-TIME PREDICTION</span>
+                <span class="confidence" id="confidence">Confidence: --%</span>
+            </div>
+            <div class="prediction-grid">
+                <div class="prediction-item">
+                    <div class="prediction-label">Color</div>
+                    <div class="prediction-value" id="predColor">
+                        <span class="color-dot"></span> Loading...
+                    </div>
+                </div>
+                <div class="prediction-item">
+                    <div class="prediction-label">Size</div>
+                    <div class="prediction-value" id="predSize">---</div>
+                </div>
+                <div class="prediction-item">
+                    <div class="prediction-label">Number</div>
+                    <div class="prediction-value number-pred" id="predNumber">?</div>
+                </div>
+            </div>
+            <div class="strategy-note" id="patternNote">
+                📊 Analyzing patterns...
+            </div>
+        </div>
+
+        <!-- Number Grid -->
+        <div class="number-grid">
+            <div class="grid-title">Numbers</div>
+            <div class="grid-buttons">
+                <button class="num-btn">0</button><button class="num-btn">1</button>
+                <button class="num-btn">2</button><button class="num-btn">3</button>
+                <button class="num-btn">4</button><button class="num-btn">5</button>
+                <button class="num-btn">6</button><button class="num-btn">7</button>
+                <button class="num-btn">8</button><button class="num-btn">9</button>
+            </div>
+        </div>
+
+        <!-- Multipliers -->
+        <div class="multipliers">
+            <button class="mult-btn">X1</button><button class="mult-btn">X5</button>
+            <button class="mult-btn">X10</button><button class="mult-btn">X20</button>
+            <button class="mult-btn">X50</button><button class="mult-btn">X100</button>
+        </div>
+
+        <!-- Size Buttons -->
+        <div class="size-buttons">
+            <button class="big-btn">🔴 BIG</button>
+            <button class="small-btn">🔵 SMALL</button>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="history">📜 Game History</button>
+            <button class="tab-btn" data-tab="chart">📈 Chart</button>
+            <button class="tab-btn" data-tab="strategy">🎯 Follow Strategy</button>
+        </div>
+
+        <!-- History Tab -->
+        <div class="tab-content active" id="historyTab">
+            <div class="history-header">
+                <span>Period</span><span>Number</span><span>Big/Small</span><span>Color</span>
+            </div>
+            <div class="history-list" id="historyList"></div>
+        </div>
+
+        <!-- Chart Tab -->
+        <div class="tab-content" id="chartTab">
+            <div class="chart-placeholder">
+                📊 Real-time Distribution
+                <div class="simple-chart" id="simpleChart"></div>
+            </div>
+        </div>
+
+        <!-- Strategy Tab -->
+        <div class="tab-content" id="strategyTab">
+            <div class="strategy-box">
+                <div class="strategy-title">🎯 AI Strategy Assistant</div>
+                <div id="strategyText">Connecting to AI engine...</div>
+                <div class="strategy-stats" id="strategyStats">
+                    <span>Loading...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
