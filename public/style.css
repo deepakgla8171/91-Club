@@ -384,10 +384,6 @@ body {
     cursor: pointer;
 }
 
-.tab-btn.active {
-    background: #ff6b35;
-}
-
 .tab-content {
     display: none;
 }
